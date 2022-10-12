@@ -12,9 +12,21 @@ const Todo = () => {
 
   const [userInput, setUserInput] = useState("");
   const [todoList, setTodoList] = useState([
-    "Study ReactJS",
-    "Study Algorithms",
-    "Clean House",
+    {
+      id: 1,
+      task: "Study Reactjs",
+      isDone: false,
+    },
+    {
+      id: 2,
+      task: "Study Algorithms",
+      isDone: true,
+    },
+    {
+      id: 3,
+      task: "Clearn House",
+      isDone: false,
+    },
   ]);
 
   const handleInput = (e) => {
@@ -22,38 +34,52 @@ const Todo = () => {
   };
 
   const handleAddTodo = () => {
-    setTodoList((prev) => [...prev, userInput]);
+    const newTodo = {
+      id: Math.floor(Math.random() * 1000),
+      isDone: false,
+      task: userInput,
+    };
+    setTodoList((prev) => [...prev, newTodo]);
     setUserInput("");
   };
 
-  const handleDeleteTodo = (index) => {
-    const newTodoList = [...todoList];
-    newTodoList.splice(index, 1);
+  const handleDeleteTodo = (id) => {
+    const newTodoList = todoList.filter((todo) => todo.id !== id);
     setTodoList(newTodoList);
+    // setTodoList((prevState) => {
+    //   const newTodoList = prevState.filter((todo) => todo.id !== id);
+    //   return newTodoList;
+    // });
   };
+
+  // დავალება: თუდუს დაკლიკებაზე, იცვლებოდეს მისი isDone property იმის
+  // საპირისპიროდ რაც იყო.
+  const handleTodoStatus = (id) => {};
 
   return (
     <div>
-      <div className="flex w-80">
+      <div className='flex w-80'>
         <input
           value={userInput}
           onChange={(e) => handleInput(e)}
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
         />
         <button
           onClick={handleAddTodo}
-          className="ml-4 bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 rounded"
+          className='ml-4 bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 rounded'
         >
           Add Todo
         </button>
       </div>
-      <ul className="flex flex-col">
-        {todoList.map((todo, index) => (
-          <li key={todo}>
-            <span>{todo}</span>
+      <ul className='flex flex-col'>
+        {todoList.map((todo) => (
+          <li key={todo.id}>
+            <span className={todo.isDone ? "line-through" : "underline"}>
+              {todo.task}
+            </span>
             <span
-              className="ml-4 cursor-pointer hover:text-red-600 transition-all delay-75"
-              onClick={() => handleDeleteTodo(index)}
+              className='ml-4 cursor-pointer hover:text-red-600 transition-all delay-75'
+              onClick={() => handleDeleteTodo(todo.id)}
             >
               X
             </span>
