@@ -8,11 +8,24 @@ const PersonsList = ({ personData }) => {
 
   const redirect = useNavigate();
 
+  //componentDidUpdate
   useEffect(() => {
     if (!userInfo) {
       redirect("/login");
     }
   }, [redirect, userInfo]);
+
+  //componentDidMount
+  // useEffect(() => {}
+
+  // , [])
+
+  // componentDidUnmount
+  // useEffect(() => {
+  //   return {
+
+  //   }
+  // }, [])
 
   return (
     <>
