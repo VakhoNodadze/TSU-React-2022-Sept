@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const Login = ({ users }) => {
+  // hooks
   const redirect = useNavigate();
 
+  // state
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
   });
 
+  //handlers
   const handleInput = (event) => {
     const { value, name } = event.target;
     setCredentials((prev) => ({ ...prev, [name]: value }));
@@ -29,6 +32,28 @@ const Login = ({ users }) => {
     localStorage.setItem("user", JSON.stringify(credentials));
     redirect("/");
   };
+
+  // lifecycle methods
+  // runs on every re-rener
+  // useEffect(() => {
+
+  // })
+
+  // runs only when components mounts (In React 18 it runs twice in development mode)
+  // useEffect(() => {
+  //   console.log("component did mount");
+  //   console.log("component did update");
+  //   return () => {
+  //     console.log("component unmounted");
+  //   };
+  // }, []);
+
+  // runs when credentials email or password changes
+  // useEffect(() => {
+  //   setCredentials({ email: "test@gmail.com", password: "vaxo" });
+  // }, [credentials.email, credentials.password]);
+
+  // renders
 
   return (
     <div className="items-center justify-center w-full display">
