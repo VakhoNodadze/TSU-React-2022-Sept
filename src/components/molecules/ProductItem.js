@@ -1,77 +1,57 @@
 // @ts-nocheck
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Card from "../atoms/Card";
-import Avatar from "../atoms/Avatar/Avatar";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import SearchIcon from "@mui/icons-material/Search";
 
-const ProductItem = ({
-  id,
-  description,
-  image,
-  title,
-  price,
-  category,
-  rating,
-}) => {
+const ProductItem = ({ product, handleAddToCart }) => {
   //values
-  const [isFrontHidden, setIsFrontHidden] = useState(false);
+  // const [isFrontHidden, setIsFrontHidden] = useState(false);
+  const { id, description, image, title, price, category, rating } = product;
+
+  const [hoverEffects, setHoverEffects] = useState(" opacity-0");
 
   // const { id, description, image, title, price, category, rating } = product;
 
   // handlers
-  const handleFlip = () => setIsFrontHidden((prev) => !prev);
+  // const handleFlip = () => setIsFrontHidden((prev) => !prev);
+
+  const iconStyle =
+    "h-[40px] w-[40px] rounded-full bg-white flex items-center justify-center m-3 hover:bg-[#894af3] hover:text-white hover:scale-[1.1] ease-in duration-100 cursor-pointer";
+
+  function handleHoverEnter() {
+    setHoverEffects(" opacity-1 bg-[rgba(0,0,0,0.2)]");
+  }
+
+  function handleHoverExit() {
+    setHoverEffects(" opacity-0");
+  }
 
   return (
-    <div className="my-5">
-      <Card onClick={handleFlip}>
-        <Card.Front isHidden={isFrontHidden}>
-          <img
-            src={image}
-            alt="Placeholder"
-            width="100%"
-            height="100%"
-            className="rounded-lg"
-          />
-          {/* <p className="text-2xl text-center mt-2">{title}</p>
-          <p className="text-center text-lg mt-4">
-            Rating <span className="font-bold">{rating.rate}</span>
-          </p> */}
-        </Card.Front>
-        <Card.Back isHidden={isFrontHidden} className="p-4">
-          <div className="flex items-center justify-between mx-4">
-            <Avatar
-              firstName={title}
-              lastName={description}
-              className="mr-2"
-              avatar={image}
-            />
-            {/* <button
-              // onClick={() => handleDelete(id)}
-              className="px-2 font-bold text-white bg-red-400 rounded-lg right-6"
-            >
-              Remove Product
-            </button> */}
-          </div>
-          <p className="mt-4 text-white">
-            <span className="mr-2 text-sm text-white opacity-60">Title:</span>
-            <span>{title}</span>
-          </p>
-          <p className="mt-4 text-white">
-            <span className="mr-2 text-sm text-white opacity-60">
-              Category:
-            </span>
-            <span>{category}</span>
-          </p>
-          <p className="mt-4 text-white">
-            <span className="mr-2 text-sm text-white opacity-60">
-              Description:
-            </span>
-            <span>{description}</span>
-          </p>
-        </Card.Back>
-      </Card>
-      <div className="mt-5 mx-4">
-        <Link to={`/${id}`}>View Item</Link>
+    <div
+      className="flex items-center justify-center flex-1 min-w-[280px] min-h-[350px] m-2 overflow-hidden rounded-md shadow-lg relative"
+      onMouseEnter={handleHoverEnter}
+      onMouseLeave={handleHoverExit}
+    >
+      <img src={image} alt="product" className="h-[80%] w-[90%]" />
+      <div
+        className={
+          `flex items-center justify-center absolute w-[100%] h-[100%] ease-in duration-100` +
+          hoverEffects
+        }
+      >
+        <div className={iconStyle} onClick={() => handleAddToCart(product)}>
+          <ShoppingCartIcon />
+        </div>
+        <div className={iconStyle}>
+          <FavoriteIcon />
+        </div>
+        <div className={iconStyle}>
+          <Link to={`/${id}`}>
+            <SearchIcon />
+          </Link>
+        </div>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React, { useState } from "react";
-import Card from "../atoms/Card";
-import Avatar from "../atoms/Avatar/Avatar";
+import Card from "../primitives/Card";
+import Avatar from "../primitives/Avatar/Avatar";
 
 const PersonItem = ({
   name,
