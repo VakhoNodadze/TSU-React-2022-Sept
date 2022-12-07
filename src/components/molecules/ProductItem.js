@@ -5,12 +5,16 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import SearchIcon from "@mui/icons-material/Search";
 
-const ProductItem = ({ product, handleAddToCart }) => {
+import { useStore } from "../../store/StoreContext";
+
+const ProductItem = ({ product }) => {
   //values
   // const [isFrontHidden, setIsFrontHidden] = useState(false);
   const { id, description, image, title, price, category, rating } = product;
 
   const [hoverEffects, setHoverEffects] = useState(" opacity-0");
+
+  const { handleAddToCart } = useStore();
 
   // const { id, description, image, title, price, category, rating } = product;
 

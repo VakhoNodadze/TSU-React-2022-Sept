@@ -5,9 +5,13 @@ import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import StarIcon from "@mui/icons-material/Star";
 import StarHalfIcon from "@mui/icons-material/StarHalf";
 
-const ProductItem = ({ handleAddToCart }) => {
+import { useStore } from "../store/StoreContext";
+
+const ProductItem = () => {
   const { productId } = useParams();
   const navigate = useNavigate();
+
+  const { handleAddToCart } = useStore();
 
   const [product, setProduct] = useState({});
   const [isLoading, setIsloading] = useState(false);

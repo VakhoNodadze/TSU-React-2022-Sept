@@ -1,9 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const Login = ({ users }) => {
+// import { useStore } from "../store/StoreContext";
+import { StoreContext } from "../store/StoreContext";
+
+const Login = () => {
   // hooks
   const redirect = useNavigate();
+
+  const { users } = useContext(StoreContext);
 
   // state
   const [credentials, setCredentials] = useState({

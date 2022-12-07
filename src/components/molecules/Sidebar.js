@@ -1,7 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Sidebar = ({ categories, handleCategoryChange }) => {
+import { useStore } from "../../store/StoreContext";
+
+const Sidebar = () => {
+  const { categories, handleCategoryChange } = useStore();
+
   return (
     <aside className="w-64 min-h-screen">
       <div className="h-full px-3 py-4 overflow-y-auto rounded bg-gray-50 dark:bg-gray-800">

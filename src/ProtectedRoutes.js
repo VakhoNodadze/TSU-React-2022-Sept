@@ -6,35 +6,15 @@ import ProductItem from "./pages/ProductItem";
 import ProductList from "./pages/ProductsList";
 import Navbar from "./components/molecules/Navbar";
 
-const ProtectedRoutes = ({
-  handleCategoryChange,
-  categories,
-  filteredProducts,
-  handleAddToCart,
-  cartItemsNumber,
-}) => {
+const ProtectedRoutes = () => {
   return (
-    <div>
-      <Navbar cartItemsNumber={cartItemsNumber} />
+    <div className="w-full">
+      <Navbar />
       <div className="flex">
-        <Sidebar
-          handleCategoryChange={handleCategoryChange}
-          categories={categories}
-        />
+        <Sidebar />
         <Routes>
-          <Route
-            path="/"
-            element={
-              <ProductList
-                products={filteredProducts}
-                handleAddToCart={handleAddToCart}
-              />
-            }
-          />
-          <Route
-            path="/:productId"
-            element={<ProductItem handleAddToCart={handleAddToCart} />}
-          />
+          <Route path="/" element={<ProductList />} />
+          <Route path="/:productId" element={<ProductItem />} />
         </Routes>
       </div>
     </div>

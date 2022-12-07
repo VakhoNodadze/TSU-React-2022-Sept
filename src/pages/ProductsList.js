@@ -1,16 +1,14 @@
 import React from "react";
 import ProductItem from "../components/molecules/ProductItem";
 
-const ProductList = ({ products, handleAddToCart }) => {
+import { useStore } from "../store/StoreContext";
+
+const ProductList = () => {
+  const { filteredProducts: products } = useStore();
   return (
     <div className="flex flex-wrap w-full">
       {products.map((product) => (
-        <ProductItem
-          key={product.id}
-          product={product}
-          handleAddToCart={handleAddToCart}
-          // {...product}
-        />
+        <ProductItem key={product.id} product={product} />
       ))}
     </div>
   );

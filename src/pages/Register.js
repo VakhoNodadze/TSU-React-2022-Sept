@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { useStore } from "../store/StoreContext";
+
 // TODO: Create another file and rewrite this component as a Class Component(See login page example)
-const Register = ({ handleAddUser }) => {
+const Register = () => {
+  const { handleAddUser } = useStore();
+
   const [registerInfo, setRegisterInfo] = useState({
     fullname: "",
     email: "",

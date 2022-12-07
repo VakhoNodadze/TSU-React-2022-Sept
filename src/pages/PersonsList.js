@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
-import PersonItem from "../components/molecules/PersonItem";
-
 import { useNavigate } from "react-router-dom";
 
-const PersonsList = ({ personData }) => {
+import PersonItem from "../components/molecules/PersonItem";
+import { useStore } from "../store/StoreContext";
+
+const PersonsList = () => {
+  const { personData } = useStore();
+
   const userInfo = localStorage.getItem("user");
 
   const redirect = useNavigate();
