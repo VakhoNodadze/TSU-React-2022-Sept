@@ -2,7 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
-const Navbar = ({ cartItemsNumber }) => {
+import { useStore } from "../../store/StoreContext";
+
+const Navbar = () => {
+  const { cartItems: cart } = useStore();
+
   const handleLogout = () => {
     localStorage.removeItem("user");
   };
@@ -32,8 +36,7 @@ const Navbar = ({ cartItemsNumber }) => {
                 <li className="float-left">
                   <p className="flex items-center gap-1 px-2 py-1 mt-2 capitalize transition duration-300 ease-in-out rounded-sm cursor-pointer hover:text-gray-700 decoration-indigo-500 decoration-2 underline-offset-1">
                     <span>
-                      Cart <ShoppingCartIcon />{" "}
-                      {cartItemsNumber > 0 && cartItemsNumber}
+                      Cart <ShoppingCartIcon /> {cart.length > 0 && cart.length}
                     </span>
                   </p>
                 </li>

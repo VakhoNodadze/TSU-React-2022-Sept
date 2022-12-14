@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 // import { useStore } from "../store/StoreContext";
-import { StoreContext } from "../store/StoreContext";
+import { StoreContext } from "store/StoreContext";
 
 const Login = () => {
   // hooks

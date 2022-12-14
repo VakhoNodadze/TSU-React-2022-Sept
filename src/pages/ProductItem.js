@@ -6,12 +6,13 @@ import StarIcon from "@mui/icons-material/Star";
 import StarHalfIcon from "@mui/icons-material/StarHalf";
 
 import { useStore } from "../store/StoreContext";
+import { setCartItems } from "../store/actions";
 
 const ProductItem = () => {
   const { productId } = useParams();
   const navigate = useNavigate();
 
-  const { handleAddToCart } = useStore();
+  const { dispatch } = useStore();
 
   const [product, setProduct] = useState({});
   const [isLoading, setIsloading] = useState(false);
@@ -93,7 +94,7 @@ const ProductItem = () => {
           </div>
           <button
             className="text-white bg-[#8a4af3] rounded-md shadow-md mt-[30px] p-3"
-            onClick={() => handleAddToCart(product)}
+            onClick={() => dispatch(setCartItems(product))}
           >
             Add to Cart
           </button>

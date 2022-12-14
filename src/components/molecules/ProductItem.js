@@ -5,7 +5,9 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import SearchIcon from "@mui/icons-material/Search";
 
-import { useStore } from "../../store/StoreContext";
+import { useStore } from "store/StoreContext";
+
+import { setCartItems } from "store/actions";
 
 const ProductItem = ({ product }) => {
   //values
@@ -14,7 +16,7 @@ const ProductItem = ({ product }) => {
 
   const [hoverEffects, setHoverEffects] = useState(" opacity-0");
 
-  const { handleAddToCart } = useStore();
+  const { dispatch } = useStore();
 
   // const { id, description, image, title, price, category, rating } = product;
 
@@ -45,7 +47,10 @@ const ProductItem = ({ product }) => {
           hoverEffects
         }
       >
-        <div className={iconStyle} onClick={() => handleAddToCart(product)}>
+        <div
+          className={iconStyle}
+          onClick={() => dispatch(setCartItems(product))}
+        >
           <ShoppingCartIcon />
         </div>
         <div className={iconStyle}>

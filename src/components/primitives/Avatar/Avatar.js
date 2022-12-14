@@ -13,13 +13,13 @@ const Avatar = ({
   ...rest
 }) => {
   const renderAvatarWithImage = () => (
-    <div className='relative flex'>
+    <div className="relative flex">
       <div
         className={`flex bg-${bgColor} text-${textColor} w-10 h-10 ${
           isRounded ? "rounded-full" : "rounded-md"
         } cursor-pointer ${className}`}
       >
-        <img src={avatar} alt='avatar' />
+        <img src={avatar} alt="avatar" />
       </div>
     </div>
   );
@@ -31,8 +31,8 @@ const Avatar = ({
         isRounded ? "rounded-full" : "rounded-md"
       } cursor-pointer ${className}  border-2`}
     >
-      <span className='text-xs'>{firstName?.slice(0, 1).toUpperCase()}</span>
-      <span className='text-xs'>{lastName?.slice(0, 1).toUpperCase()}</span>
+      <span className="text-xs">{firstName?.slice(0, 1).toUpperCase()}</span>
+      <span className="text-xs">{lastName?.slice(0, 1).toUpperCase()}</span>
       {children}
     </div>
   );

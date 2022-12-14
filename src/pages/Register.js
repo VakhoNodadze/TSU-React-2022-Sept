@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useStore } from "../store/StoreContext";
+import { setUsers } from "../store/actions";
+import { SET_USERS } from "../store/actionTypes";
 
 // TODO: Create another file and rewrite this component as a Class Component(See login page example)
 const Register = () => {
-  const { handleAddUser } = useStore();
+  const { dispatch } = useStore();
 
   const [registerInfo, setRegisterInfo] = useState({
     fullname: "",
@@ -38,7 +40,16 @@ const Register = () => {
       alert("Passwords must match!");
       return;
     }
-    handleAddUser(registerInfo);
+    // pre reducer version
+    // handleAddUser(registerInfo);
+
+    // post reducer version. Both do exactly the same thing
+    // dispatch(setUsers(registerInfo));
+    dispatch({
+      payload: registerInfo,
+      type: SET_USERS,
+    });
+
     alert("User successfully added!");
     setRegisterInfo({
       fullname: "",
