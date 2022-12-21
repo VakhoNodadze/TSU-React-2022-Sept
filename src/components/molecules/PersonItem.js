@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import Card from "../primitives/Card";
 import Avatar from "../primitives/Avatar/Avatar";
 
+import useToggle from "hooks/useToggle";
+
 const PersonItem = ({
   name,
   country,
@@ -15,30 +17,30 @@ const PersonItem = ({
   handleDelete,
 }) => {
   //values
-  const [isFrontHidden, setIsFrontHidden] = useState(false);
+  const [value, toggleValue] = useToggle(false);
 
   const firstName = name?.split(" ")[0];
   const lastName = name?.split(" ")[1];
 
   // handlers
-  const handleFlip = () => setIsFrontHidden((prev) => !prev);
+  // const handleFlip = () => setvalue((prev) => !prev);
 
   return (
     <div>
-      <Card onClick={handleFlip}>
-        <Card.Front isHidden={isFrontHidden}>
+      <Card onClick={toggleValue}>
+        <Card.Front isHidden={value}>
           <img
             src="https://www.w3schools.com/w3images/team2.jpg"
             alt="Placeholder"
             width="100%"
             className="rounded-lg"
           />
-          <p className="text-2xl text-center mt-2">{name}</p>
-          <p className="text-center text-lg mt-4">
+          <p className="mt-2 text-2xl text-center">{name}</p>
+          <p className="mt-4 text-lg text-center">
             Number Range: <span className="font-bold">{numberRange}</span>
           </p>
         </Card.Front>
-        <Card.Back isHidden={isFrontHidden} className="p-4">
+        <Card.Back isHidden={value} className="p-4">
           <div className="flex items-center justify-between mx-4">
             <Avatar
               firstName={firstName}
